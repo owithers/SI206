@@ -8,10 +8,6 @@ from textblob import TextBlob
 # 3) Print the average polarity of the results
 
 # Be prepared to change the search term during demo.
-access_token = "334833849-AhmmDfKqzhmrUqiBvvDxuu72zYtlisCi4SKbxbXC"
-access_token_secret = "5tJcCaiyrYrisnHGcgB2UdCbIcYC6JqkzgKpVBm4LFYln"
-consumer_key = "l2VJXXmanx6CpxWqXZ6bbfWBq"
-consumer_secret = "J9csrcFCZDldO2407Vmgs3QYCm6SHlEB9ZGfHSIEPfDRiLMYFy"
 
 auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
 auth.set_access_token(access_token,access_token_secret)
@@ -20,10 +16,17 @@ api = tweepy.API(auth)
 
 public_tweets = api.search('"Yeezy" @kanyewest')
 
+#lists to pull out each number, then do the average
+subjectivity=[]
+polarity=[]
 for tweet in public_tweets:
 	print(tweet.text)
 	analysis = TextBlob(tweet.text)
+	subjectivity.append(analysis.sentiment.subjectivity)
+	polarity.append(analysis.sentiment.polarity)
 	print(analysis.sentiment)
+av_sub= sum(subjectivity)/len(subjectivity)
+av_pol= sum(polarity)/len(polarity)
 
-print("Average subjectivity is") #for loop to go through the sentiments same for polarity
-print("Average polarity is") #calculate the average of the stuff that is output
+print("Average subjectivity is " + str(av_sub)) 
+print("Average polarity is " + str(av_pol)) 
