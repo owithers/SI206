@@ -18,7 +18,7 @@ auth.set_access_token(access_token,access_token_secret)
 
 api = tweepy.API(auth)
 
-public_tweets = api.search('"Kanye" @kanyewest')
+public_tweets = api.search('"Yeezy" @kanyewest')
 
 for tweet in public_tweets:
 	print(tweet.text)
@@ -26,4 +26,4 @@ for tweet in public_tweets:
 	print(analysis.sentiment)
 
 print("Average subjectivity is") #for loop to go through the sentiments same for polarity
-print("Average polarity is")
+print("Average polarity is") #calculate the average of the stuff that is output
